@@ -1,10 +1,9 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
-import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Avatar, AvatarFallback } from './ui/avatar';
-import { X, TreePine } from 'lucide-react';
+import { TreePine } from 'lucide-react';
 import { creatorsData } from './data/creatorsData';
 
 interface CreatorsModalProps {

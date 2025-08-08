@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardDescription, CardHeader } from './ui/card';
 import { useApp } from './AppContext';
 import { KumotsudaiLogo } from './KumotsudaiLogo';
-import { TreePine, Moon, Sun, Leaf, Snowflake } from 'lucide-react';
+import { TreePine, Leaf, Snowflake } from 'lucide-react';
 
 // 降霊画面（ログイン）コンポーネント - 改良されたテーマ対応版
 export const LoginScreen: React.FC = () => {

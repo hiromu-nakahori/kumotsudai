@@ -4,9 +4,9 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { useApp } from './AppContext';
 import { KumotsudaiLogo } from './KumotsudaiLogo';
 import { 
-  Crown, 
+/*   Crown, 
   Search, 
-  Plus, 
+  Plus,  */
   Moon, 
   Sun, 
   LogOut, 

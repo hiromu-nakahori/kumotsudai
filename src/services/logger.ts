@@ -18,7 +18,7 @@
  * @author 供物台開発チーム
  */
 
-import { ILogEntry } from '../types/enterprise';
+import type { ILogEntry } from '../types/enterprise';
 
 // 循環依存を避けるため、設定は遅延インポート
 let AppConfigManager: any = null;

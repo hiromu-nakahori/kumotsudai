@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Avatar, AvatarFallback } from './ui/avatar';
-import { ArrowLeft, TreePine, Github, Twitter, Globe, Mail } from 'lucide-react';
+import { ArrowLeft, TreePine, Github, Twitter, Mail } from 'lucide-react';
 import { useApp } from './AppContext';
 import { creatorsData } from './data/creatorsData';
 

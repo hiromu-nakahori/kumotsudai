@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Button } from './ui/button';
 import { useApp } from './AppContext';
-import { Menu, Crown, Search, Plus, Moon, Sun, LogOut } from 'lucide-react';
+import { Menu, Crown, Search, Plus, Moon, Sun } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { RankingTab } from './RankingTab';
 import { SearchTab } from './SearchTab';
@@ -12,7 +12,7 @@ import { RightSidebar } from './RightSidebar';
 
 // X（Twitter）風のメインアプリケーションコンポーネント
 export const MainApp: React.FC = () => {
-  const { currentUser, theme, toggleTheme, logout, setCurrentScreen } = useApp();
+  const { theme, toggleTheme } = useApp();
   const [activeTab, setActiveTab] = useState('ranking');
 
   return (

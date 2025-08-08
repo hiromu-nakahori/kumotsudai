@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
-import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Crown, Search, Plus, Heart, MessageCircle, TreePine, Moon, Sun } from 'lucide-react';

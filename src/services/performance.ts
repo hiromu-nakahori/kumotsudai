@@ -16,7 +16,7 @@
  * @author 供物台開発チーム
  */
 
-import { IPerformanceMetrics } from '../types/enterprise';
+import type { IPerformanceMetrics } from '../types/enterprise';
 import { AppConfigManager } from './config';
 import { LoggerService } from './logger';
 

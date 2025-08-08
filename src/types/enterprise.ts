@@ -782,4 +782,4 @@ export namespace KumotsudaiTypes {
 /**
  * デフォルトエクスポート
  */
-export default KumotsudaiTypes;
+/* export default KumotsudaiTypes; */

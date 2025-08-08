@@ -17,7 +17,7 @@ export const UserProfileScreen: React.FC = () => {
     getOfferingsByUserId, 
     getLikedOfferingsByUserId, 
     getCommentedOfferingsByUserId,
-    currentUser 
+  /*   currentUser  */
   } = useApp();
   
   const [activeTab, setActiveTab] = useState('offerings');

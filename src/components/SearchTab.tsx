@@ -6,12 +6,12 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { useApp, type Offering } from './AppContext';
 import { OfferingCard } from './OfferingCard';
-import { Search, Filter, X, TrendingUp, Clock, Heart, MessageCircle, Sparkles, Command } from 'lucide-react';
+import { Search, Filter, X, TrendingUp, Clock, Sparkles, Command } from 'lucide-react';
 import { toast } from 'sonner';
 
 // 高度な検索・フィルター機能を持つ探求の壇
 export const SearchTab: React.FC = () => {
-  const { offerings, getUserById } = useApp();
+  const { offerings } = useApp();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'latest' | 'popular' | 'mostCommented' | 'relevance'>('relevance');
@@ -51,11 +51,11 @@ export const SearchTab: React.FC = () => {
   }, [offerings]);
 
   // 全作者を取得
-  const allAuthors = useMemo(() => {
+/*   const allAuthors = useMemo(() => {
     const authors = new Set<string>();
     offerings.forEach(offering => authors.add(offering.author));
     return Array.from(authors).sort();
-  }, [offerings]);
+  }, [offerings]); */
 
   // 検索候補の生成
   useEffect(() => {
