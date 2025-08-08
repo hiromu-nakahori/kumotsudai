@@ -1,0 +1,1615 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px; /* UXハニカム - アクセシビリティ向上のため14px→16pxに変更 */
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* UXハニカム - 大きめサイズの定義 */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+
+  /* 秋色カラーパレット（暖色系） - 読みやすさ重視 */
+  --autumn-primary: #c4442d; /* 深い朱色 */
+  --autumn-secondary: #d2691e; /* 琥珀色 */
+  --autumn-accent: #ff8c00; /* 橙色 */
+  --autumn-warm: #8b4513; /* 栗色 */
+  --autumn-gold: #daa520; /* 金色 */
+  --autumn-crimson: #dc143c; /* 深紅 */
+  --autumn-ochre: #cc8400; /* 黄土色 */
+  --autumn-leaf: #ff6347; /* 紅葉色 */
+  --autumn-text: #2d1810; /* 読みやすい濃い茶色 */
+  --autumn-text-light: #5d4037; /* 少し薄い茶色 */
+
+  /* 冬色カラーパレット（最高コントラスト・WCAG AAA準拠） */
+  --winter-primary: #1e3a8a; /* 深い藍色 */
+  --winter-secondary: #1e40af; /* 濃い青色 */
+  --winter-accent: #60a5fa; /* 明るい青色（より見やすく） */
+  --winter-ice: #93c5fd; /* 氷青色（明度向上） */
+  --winter-frost: #dbeafe; /* 薄氷色 */
+  --winter-deep: #0f172a; /* 深い夜色 */
+  --winter-silver: #cbd5e1; /* より明るい銀色 */
+  --winter-snow: #ffffff; /* 純粋な白 */
+  --winter-text: #ffffff; /* 純白文字（最高コントラスト） */
+  --winter-text-muted: #e2e8f0; /* 明るいグレー（WCAG AA以上） */
+  --winter-text-secondary: #cbd5e1; /* セカンダリテキスト */
+  --winter-text-tertiary: #94a3b8; /* 三次テキスト */
+  --winter-text-dark: #0f172a; /* 読みやすい濃い色 */
+
+  /* 冬テーマ専用入力フィールド背景色 */
+  --winter-input-background: #1e293b; /* 暗いスレート背景 */
+  --winter-input-border: #3b82f6; /* 青色ボーダー */
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+/* ============ 超高速パフォーマンス最適化 ============ */
+
+/* GPUアクセラレーション（全要素） */
+* {
+  transform: translateZ(0);
+  will-change: auto;
+  backface-visibility: hidden;
+}
+
+/* 高速レンダリング最適化 */
+.performance-optimized {
+  contain: layout style paint;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 超高速アニメーション */
+.ultra-fast-transition {
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ultra-fast-fade-in {
+  animation: ultraFastFadeIn 0.2s ease-out;
+}
+
+@keyframes ultraFastFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* UXハニカム原則 - 秋のテーマ（読みやすさ重視） */
+.autumn-theme {
+  --primary: var(--autumn-primary);
+  --secondary: var(--autumn-secondary);
+  --accent: var(--autumn-accent);
+  --muted: var(--autumn-warm);
+  --foreground: var(--autumn-text);
+  --muted-foreground: var(--autumn-text-light);
+  --background: linear-gradient(
+    135deg,
+    #fdf6e3 0%,
+    #f5deb3 50%,
+    #deb887 100%
+  );
+  --card: linear-gradient(135deg, #fffaf0 0%, #faebd7 100%);
+  --border: rgba(210, 105, 30, 0.15); /* より薄い境界線 */
+  --ring: var(--autumn-crimson);
+
+  /* 暖色グラデーション背景 */
+  background: linear-gradient(
+    135deg,
+    #fdf6e3 0%,
+    /* 象牙色 */ #f5deb3 25%,
+    /* 小麦色 */ #deb887 50%,
+    /* 薄茶色 */ #d2b48c 75%,
+    /* 茶色 */ #bc9a6a 100% /* 暗茶色 */
+  );
+  background-attachment: fixed;
+
+  /* 統一された読みやすい文字色 */
+  color: var(--autumn-text);
+}
+
+/* UXハニカム原則 - 冬のテーマ（WCAG AAA準拠・最高アクセシビリティ） */
+.winter-theme {
+  --primary: var(--winter-primary);
+  --secondary: var(--winter-secondary);
+  --accent: var(--winter-accent);
+  --muted: var(--winter-text-secondary);
+  --foreground: var(--winter-text);
+  --muted-foreground: var(--winter-text-muted);
+  --background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1e293b 50%,
+    #334155 100%
+  );
+  --card: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  --border: rgba(96, 165, 250, 0.25); /* より見やすい境界線 */
+  --ring: var(--winter-accent);
+
+  /* 入力フィールド専用背景色を定義 */
+  --input-background: var(--winter-input-background);
+
+  /* 最適化された寒色グラデーション背景 */
+  background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    /* 深い夜色 */ #1e293b 25%,
+    /* 暗いスレート */ #334155 50%,
+    /* スレート */ #475569 75%,
+    /* 明るいスレート */ #64748b 100% /* 冷たい灰色 */
+  );
+  background-attachment: fixed;
+
+  /* 完璧なコントラスト比の文字色 */
+  color: var(--winter-text);
+}
+
+/* UXハニカム - 秋テーマ専用スタイル（読みやすさとアクセシビリティ重視） */
+.autumn-theme .card {
+  background: linear-gradient(135deg, #fffaf0 0%, #faebd7 100%);
+  border: 1px solid rgba(210, 105, 30, 0.2); /* 薄い琥珀色の透明枠線 */
+  box-shadow: 0 2px 8px rgba(196, 68, 45, 0.08);
+  color: var(--autumn-text) !important;
+}
+
+/* 秋テーマでのSelect背景修正 */
+.autumn-theme [data-slot="select-content"] {
+  background: linear-gradient(
+    135deg,
+    #fffaf0 0%,
+    #faebd7 100%
+  ) !important;
+  color: var(--autumn-text) !important;
+  border: 1px solid rgba(210, 105, 30, 0.3) !important;
+}
+
+.autumn-theme [data-slot="select-trigger"] {
+  background: linear-gradient(
+    135deg,
+    #fffaf0 0%,
+    #faebd7 100%
+  ) !important;
+  color: var(--autumn-text) !important;
+  border: 1px solid rgba(210, 105, 30, 0.3) !important;
+}
+
+.autumn-theme [data-slot="select-item"] {
+  color: var(--autumn-text) !important;
+}
+
+.autumn-theme [data-slot="select-item"]:hover,
+.autumn-theme [data-slot="select-item"][data-highlighted] {
+  background: rgba(255, 140, 0, 0.15) !important;
+  color: var(--autumn-text) !important;
+}
+
+.autumn-theme .button-primary {
+  background: linear-gradient(
+    135deg,
+    var(--autumn-primary) 0%,
+    var(--autumn-crimson) 100%
+  );
+  color: white !important;
+}
+
+/* 美しいグラデーションタブ設計（秋版） */
+.autumn-theme .tab-trigger {
+  background: linear-gradient(
+    135deg,
+    var(--autumn-warm) 0%,
+    var(--autumn-secondary) 100%
+  );
+  color: white !important;
+  border: 1px solid rgba(218, 165, 32, 0.3);
+  box-shadow:
+    0 2px 8px rgba(139, 69, 19, 0.2),
+    inset 0 1px 0 rgba(255, 140, 0, 0.2);
+  min-height: 50px; /* 少し高めで美しいプロポーション */
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 12px 16px;
+}
+
+/* 秋テーマでのアクティブタブスタイル */
+.autumn-theme .tab-trigger[data-state="active"] {
+  background: linear-gradient(
+    135deg,
+    var(--autumn-primary) 0%,
+    var(--autumn-crimson) 50%,
+    var(--autumn-gold) 100%
+  );
+  color: white !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 4px 16px rgba(220, 20, 60, 0.4),
+    0 2px 8px rgba(196, 68, 45, 0.3),
+    inset 0 1px 0 rgba(255, 140, 0, 0.3);
+  border-color: var(--autumn-gold);
+}
+
+/* 秋テーマでのホバー効果 */
+.autumn-theme .tab-trigger:hover {
+  background: linear-gradient(
+    135deg,
+    var(--autumn-secondary) 0%,
+    var(--autumn-accent) 100%
+  );
+  transform: translateY(-1px) scale(1.01);
+  border-color: var(--autumn-gold);
+  box-shadow:
+    0 6px 20px rgba(196, 68, 45, 0.25),
+    inset 0 1px 0 rgba(255, 140, 0, 0.25);
+}
+
+/* UXハニカム - 冬テーマ専用スタイル（読みやすさとアクセシビリティ重視） */
+.winter-theme .card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border: 1px solid rgba(30, 58, 138, 0.2); /* 薄い青色の透明枠線 */
+  box-shadow:
+    0 2px 8px rgba(30, 58, 138, 0.12),
+    0 4px 16px rgba(59, 130, 246, 0.08),
+    inset 0 1px 0 rgba(96, 165, 250, 0.1); /* 内側の光彩効果 */
+  color: var(--winter-text) !important;
+}
+
+/* 冬テーマでのSelect背景修正（完全版） */
+.winter-theme [data-slot="select-content"] {
+  background: linear-gradient(
+    135deg,
+    #1e293b 0%,
+    #334155 100%
+  ) !important;
+  color: var(--winter-text) !important;
+  border: 1px solid rgba(96, 165, 250, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2) !important;
+}
+
+.winter-theme [data-slot="select-trigger"] {
+  background: linear-gradient(
+    135deg,
+    #1e293b 0%,
+    #334155 100%
+  ) !important;
+  color: var(--winter-text) !important;
+  border: 1px solid rgba(96, 165, 250, 0.3) !important;
+  box-shadow: 0 2px 6px rgba(30, 58, 138, 0.1) !important;
+}
+
+.winter-theme [data-slot="select-trigger"]:hover {
+  background: linear-gradient(
+    135deg,
+    #334155 0%,
+    #475569 100%
+  ) !important;
+  border-color: var(--winter-accent) !important;
+}
+
+.winter-theme [data-slot="select-trigger"]:focus {
+  background: linear-gradient(
+    135deg,
+    #1e293b 0%,
+    #334155 100%
+  ) !important;
+  border-color: var(--winter-accent) !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+}
+
+.winter-theme [data-slot="select-trigger"][data-placeholder] {
+  color: var(--winter-text-muted) !important;
+}
+
+.winter-theme [data-slot="select-item"] {
+  color: var(--winter-text) !important;
+  background: transparent !important;
+}
+
+.winter-theme [data-slot="select-item"]:hover,
+.winter-theme [data-slot="select-item"][data-highlighted] {
+  background: rgba(96, 165, 250, 0.15) !important;
+  color: var(--winter-text) !important;
+}
+
+.winter-theme [data-slot="select-item"][data-state="checked"] {
+  background: rgba(96, 165, 250, 0.25) !important;
+  color: var(--winter-text) !important;
+}
+
+/* 冬テーマでのWCAG AAA準拠テキスト色調整 */
+.winter-theme h1,
+.winter-theme h2,
+.winter-theme h3,
+.winter-theme h4,
+.winter-theme h5,
+.winter-theme h6 {
+  color: var(--winter-text) !important;
+  text-shadow: 0 1px 3px rgba(15, 23, 42, 0.5); /* 読みやすさ向上 */
+}
+
+.winter-theme p,
+.winter-theme span,
+.winter-theme div {
+  color: var(--winter-text) !important;
+}
+
+.winter-theme .text-muted-foreground {
+  color: var(--winter-text-muted) !important;
+}
+
+.winter-theme .text-primary {
+  color: var(--winter-accent) !important;
+}
+
+.winter-theme .text-secondary {
+  color: var(--winter-text-secondary) !important;
+}
+
+.winter-theme .text-tertiary {
+  color: var(--winter-text-tertiary) !important;
+}
+
+.winter-theme .text-foreground {
+  color: var(--winter-text) !important;
+}
+
+.winter-theme .button-primary {
+  background: linear-gradient(
+    135deg,
+    var(--winter-primary) 0%,
+    var(--winter-secondary) 100%
+  );
+  color: var(--winter-text) !important;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
+}
+
+/* カード内要素の詳細色指定 */
+.winter-theme .card h1,
+.winter-theme .card h2,
+.winter-theme .card h3,
+.winter-theme .card h4,
+.winter-theme .card h5,
+.winter-theme .card h6,
+.winter-theme .card p,
+.winter-theme .card span,
+.winter-theme .card div {
+  color: var(--winter-text) !important;
+}
+
+/* ボタン内テキストの色保証 */
+.winter-theme button {
+  color: var(--winter-text) !important;
+}
+
+.winter-theme .tab-trigger {
+  color: var(--winter-text) !important;
+}
+
+/* 冬テーマでの入力フィールドの色改善（完全版） */
+.winter-theme input,
+.winter-theme textarea {
+  color: var(--winter-text) !important;
+  background: var(--winter-input-background) !important;
+  border-color: var(--winter-input-border) !important;
+  box-shadow: 0 1px 3px rgba(30, 58, 138, 0.1) !important;
+}
+
+.winter-theme input:focus,
+.winter-theme textarea:focus {
+  background: var(--winter-input-background) !important;
+  border-color: var(--winter-accent) !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+}
+
+.winter-theme input::placeholder,
+.winter-theme textarea::placeholder {
+  color: var(--winter-text-muted) !important;
+  opacity: 0.8;
+}
+
+/* ラベルの色も調整 */
+.winter-theme label {
+  color: var(--winter-text) !important;
+}
+
+/* 美しいグラデーションタブ設計（冬版） */
+.winter-theme .tab-trigger {
+  background: linear-gradient(
+    135deg,
+    var(--winter-deep) 0%,
+    var(--winter-secondary) 100%
+  );
+  color: var(--winter-text) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow:
+    0 2px 8px rgba(15, 23, 42, 0.3),
+    inset 0 1px 0 rgba(96, 165, 250, 0.15);
+  min-height: 50px; /* 少し高めで美しいプロポーション */
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 12px 16px;
+}
+
+/* 冬テーマでのアクティブタブスタイル */
+.winter-theme .tab-trigger[data-state="active"] {
+  background: linear-gradient(
+    135deg,
+    var(--winter-primary) 0%,
+    var(--winter-accent) 50%,
+    var(--winter-ice) 100%
+  );
+  color: white !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 4px 16px rgba(59, 130, 246, 0.4),
+    0 2px 8px rgba(30, 58, 138, 0.3),
+    inset 0 1px 0 rgba(96, 165, 250, 0.3);
+  border-color: var(--winter-ice);
+}
+
+/* 冬テーマでのホバー効果 */
+.winter-theme .tab-trigger:hover {
+  background: linear-gradient(
+    135deg,
+    var(--winter-secondary) 0%,
+    var(--winter-accent) 100%
+  );
+  transform: translateY(-1px) scale(1.01);
+  border-color: var(--winter-ice);
+  box-shadow:
+    0 6px 20px rgba(30, 58, 138, 0.3),
+    inset 0 1px 0 rgba(96, 165, 250, 0.25);
+}
+
+/* UXハニカム - ユーザビリティ向上のための美しいタブ設計 */
+.tab-trigger {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 16px; /* より丸みのあるデザイン */
+  backdrop-filter: blur(8px);
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1); /* 高速化 */
+}
+
+/* ホバー時のグラデーション光彩効果 */
+.tab-trigger::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: all 0.2s ease; /* 高速化 */
+  transform: translateX(-100%);
+  z-index: 1;
+}
+
+.tab-trigger:hover::before {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+/* アクティブ時の下線効果は::afterの代わりに別のスタイルで実装 */
+.tab-trigger {
+  border-bottom: 3px solid transparent;
+}
+
+.autumn-theme .tab-trigger[data-state="active"] {
+  border-bottom: 3px solid;
+  border-image: linear-gradient(
+      90deg,
+      var(--autumn-crimson) 0%,
+      var(--autumn-gold) 50%,
+      var(--autumn-crimson) 100%
+    )
+    1;
+}
+
+.winter-theme .tab-trigger[data-state="active"] {
+  border-bottom: 3px solid;
+  border-image: linear-gradient(
+      90deg,
+      var(--winter-accent) 0%,
+      var(--winter-ice) 50%,
+      var(--winter-accent) 100%
+    )
+    1;
+}
+
+/* UXハニカム - アクセシビリティとUXの向上 */
+.tab-trigger:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+.autumn-theme .tab-trigger:focus-visible {
+  outline-color: var(--autumn-crimson);
+}
+
+.winter-theme .tab-trigger:focus-visible {
+  outline-color: var(--winter-accent);
+}
+
+/* アニメーション効果（高速化版） */
+.theme-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 高速化 */
+}
+
+.autumn-theme .floating-particles::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(
+      circle at 20% 80%,
+      rgba(255, 140, 0, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(220, 20, 60, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(218, 165, 32, 0.1) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  animation: autumnFloat 15s ease-in-out infinite; /* 高速化 */
+}
+
+.winter-theme .floating-particles::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(
+      circle at 20% 20%,
+      rgba(176, 224, 230, 0.2) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(70, 130, 180, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 60%,
+      rgba(135, 206, 235, 0.1) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  animation: winterFloat 20s ease-in-out infinite; /* 高速化 */
+}
+
+@keyframes autumnFloat {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-10px) rotate(180deg);
+  }
+}
+
+@keyframes winterFloat {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-5px) scale(1.1);
+  }
+}
+
+/* 神秘的なタブエフェクト（高速化版） */
+@keyframes mysticalGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor;
+    opacity: 0.5;
+  }
+  50% {
+    box-shadow:
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 30px currentColor;
+    opacity: 0.8;
+  }
+}
+
+@keyframes spiritDance {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  33% {
+    transform: rotate(120deg) scale(1.1);
+  }
+  66% {
+    transform: rotate(240deg) scale(0.9);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* アクティブタブ用の神秘的な背景アニメーション */
+.autumn-theme .tab-trigger[data-state="active"] {
+  position: relative;
+}
+
+.autumn-theme .tab-trigger[data-state="active"]:after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(
+    45deg,
+    var(--autumn-crimson),
+    var(--autumn-gold),
+    var(--autumn-accent),
+    var(--autumn-crimson)
+  );
+  border-radius: 19px;
+  z-index: -1;
+  animation: spiritDance 6s linear infinite; /* 高速化 */
+  opacity: 0.4;
+  filter: blur(1px);
+}
+
+.winter-theme .tab-trigger[data-state="active"] {
+  position: relative;
+}
+
+.winter-theme .tab-trigger[data-state="active"]:after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(
+    45deg,
+    var(--winter-accent),
+    var(--winter-ice),
+    var(--winter-primary),
+    var(--winter-accent)
+  );
+  border-radius: 19px;
+  z-index: -1;
+  animation: spiritDance 8s linear infinite; /* 高速化 */
+  opacity: 0.3;
+  filter: blur(1px);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(
+    --sidebar-primary-foreground
+  );
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(
+    --sidebar-accent-foreground
+  );
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* カスタム秋冬色の定義 */
+  --color-autumn-primary: var(--autumn-primary);
+  --color-autumn-secondary: var(--autumn-secondary);
+  --color-autumn-accent: var(--autumn-accent);
+  --color-autumn-warm: var(--autumn-warm);
+  --color-autumn-gold: var(--autumn-gold);
+  --color-autumn-crimson: var(--autumn-crimson);
+  --color-autumn-ochre: var(--autumn-ochre);
+  --color-autumn-leaf: var(--autumn-leaf);
+  --color-autumn-text: var(--autumn-text);
+  --color-autumn-text-light: var(--autumn-text-light);
+  --color-winter-primary: var(--winter-primary);
+  --color-winter-secondary: var(--winter-secondary);
+  --color-winter-accent: var(--winter-accent);
+  --color-winter-ice: var(--winter-ice);
+  --color-winter-frost: var(--winter-frost);
+  --color-winter-deep: var(--winter-deep);
+  --color-winter-silver: var(--winter-silver);
+  --color-winter-snow: var(--winter-snow);
+  --color-winter-text: var(--winter-text);
+  --color-winter-text-muted: var(--winter-text-muted);
+  --color-winter-text-secondary: var(--winter-text-secondary);
+  --color-winter-text-tertiary: var(--winter-text-tertiary);
+  --color-winter-text-dark: var(--winter-text-dark);
+  --color-winter-input-background: var(
+    --winter-input-background
+  );
+  --color-winter-input-border: var(--winter-input-border);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-size: 16px; /* UXハニカム - 基本サイズを16pxに */
+    line-height: 1.6; /* 読みやすい行間 */
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease; /* 高速化 */
+  }
+}
+
+/**
+ * UXハニカム準拠のタイポグラフィ - アクセシビリティ重視
+ */
+@layer base {
+  :where(
+    :not(:has([class*=" text-"]), :not(:has([class^="text-"])))
+  ) {
+    h1 {
+      font-size: var(--text-3xl); /* 30px */
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+    }
+
+    h2 {
+      font-size: var(--text-2xl); /* 24px */
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+    }
+
+    h3 {
+      font-size: var(--text-xl); /* 20px */
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+    }
+
+    h4 {
+      font-size: var(--text-lg); /* 18px */
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+    }
+
+    h5 {
+      font-size: var(--text-base); /* 16px */
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+    }
+
+    h6 {
+      font-size: var(--text-base); /* 16px */
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+    }
+
+    p {
+      font-size: var(--text-base); /* 16px */
+      font-weight: var(--font-weight-normal);
+      line-height: 1.6;
+    }
+
+    label {
+      font-size: var(--text-base); /* 16px */
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+    }
+
+    button {
+      font-size: var(--text-base); /* 16px */
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+    }
+
+    input {
+      font-size: var(--text-base); /* 16px */
+      font-weight: var(--font-weight-normal);
+      line-height: 1.4;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* ============ 供物台ロゴ専用スタイル ============ */
+
+/* グラデーションテキスト用のユーティリティクラス */
+.background-size-200 {
+  background-size: 200% 100%;
+}
+
+/* ロゴのグラデーションアニメーション */
+.logo-gradient-animation {
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 神秘的な光彩エフェクト（ロゴ専用） */
+.mystical-logo-glow {
+  filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 16px currentColor);
+}
+
+.autumn-theme .mystical-logo-glow {
+  filter: 
+    drop-shadow(0 0 8px var(--autumn-crimson)) 
+    drop-shadow(0 0 16px var(--autumn-gold))
+    drop-shadow(0 0 24px var(--autumn-accent));
+}
+
+.winter-theme .mystical-logo-glow {
+  filter: 
+    drop-shadow(0 0 8px var(--winter-accent)) 
+    drop-shadow(0 0 16px var(--winter-ice))
+    drop-shadow(0 0 24px var(--winter-primary));
+}
+
+/* パーティクル効果最適化 */
+.logo-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 1rem;
+}
+
+/* ============ UXハニカム最高峰UX実装 ============ */
+
+/* 1. ACCESSIBLE（アクセシビリティ）- WCAG AAA準拠 */
+.large-clickable {
+  min-height: 48px; /* より大きなタッチターゲット */
+  min-width: 48px;
+}
+
+.high-contrast-text {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 最高レベルのフォーカス表示 */
+*:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+/* スクリーンリーダー専用テキスト */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only.focus:not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* 2. USABLE（使いやすさ）- 直感的フィードバック */
+.interactive-element {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); /* 高速化 */
+  cursor: pointer;
+}
+
+.interactive-element:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.interactive-element:active {
+  transform: translateY(0);
+  transition-duration: 0.1s;
+}
+
+/* ローディング状態の統一スタイル */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.loading-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    var(--muted) 25%,
+    var(--accent) 50%,
+    var(--muted) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1s infinite; /* 高速化 */
+}
+
+/* エラー状態の統一スタイル */
+.error-state {
+  border: 2px solid var(--destructive);
+  box-shadow: 0 0 0 3px rgba(212, 24, 61, 0.1);
+  animation: errorShake 0.3s ease-in-out; /* 高速化 */
+}
+
+@keyframes errorShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* テスト用アニメーション */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.2s ease-in-out; /* 高速化 */
+}
+
+/* 3. DESIRABLE（望ましさ）- 感情的魅力 */
+.mystical-glow {
+  position: relative;
+}
+
+.mystical-glow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.2s ease; /* 高速化 */
+  pointer-events: none;
+}
+
+.mystical-glow:hover::after {
+  opacity: 1;
+}
+
+/* 成功時のセレブレーション効果 */
+@keyframes celebration {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(-5deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.celebrate {
+  animation: celebration 0.4s ease-in-out; /* 高速化 */
+}
+
+/* 4. FINDABLE（発見しやすさ）- 視覚的階層 */
+.content-hierarchy-1 {
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.content-hierarchy-2 {
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.content-hierarchy-3 {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+/* 検索結果のハイライト */
+.search-highlight {
+  background: linear-gradient(
+    120deg,
+    var(--accent) 0%,
+    transparent 100%
+  );
+  padding: 0 4px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* ブレッドクラム */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumb-separator {
+  opacity: 0.5;
+}
+
+/* 5. CREDIBLE（信頼性）- 一貫性とプロフェッショナル感 */
+.professional-spacing {
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.consistent-border-radius {
+  border-radius: 12px;
+}
+
+.premium-shadow {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* セキュリティインジケーター */
+.security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--accent);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--accent-foreground);
+}
+
+/* 6. USEFUL（有用性）- 機能的明確性 */
+.status-indicator {
+  position: relative;
+}
+
+.status-indicator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: pulse 1.5s infinite; /* 高速化 */
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* プログレス表示 */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--muted);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--accent)
+  );
+  border-radius: 999px;
+  transition: width 0.2s ease; /* 高速化 */
+}
+
+/* ツールチップ */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--popover);
+  color: var(--popover-foreground);
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease; /* 高速化 */
+  z-index: 1000;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+/* 7. VALUABLE（価値）- ユーザー体験価値最大化 */
+.value-enhancement {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 動作フィードバック強化 */
+.haptic-feedback {
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1); /* 高速化 */
+}
+
+.haptic-feedback:hover {
+  transform: scale(1.02);
+}
+
+.haptic-feedback:active {
+  transform: scale(0.98);
+}
+
+/* マイクロインタラクション */
+@keyframes satisfyingClick {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.click-animation:active {
+  animation: satisfyingClick 0.1s ease-out; /* 高速化 */
+}
+
+/* スムーズなページ遷移 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out; /* 高速化 */
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.2s ease-out; /* 高速化 */
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.2s ease-out; /* 高速化 */
+}
+
+/* ============ UXハニカムS評価対応 - スマホ最適化 ============ */
+
+/* スマホ専用タッチ最適化 */
+@media (max-width: 768px) {
+  /* 供物台ロゴのスマホ最適化 */
+  .kumotsudai-logo-mobile {
+    transform: scale(0.9);
+    padding: 0.5rem;
+  }
+
+  /* ホバー効果をタッチに最適化 */
+  .interactive-element:hover {
+    transform: none; /* スマホではホバー無効化 */
+  }
+  
+  .interactive-element:active {
+    transform: scale(0.95);
+    transition-duration: 0.1s;
+  }
+
+  /* タッチターゲットサイズ拡大（UXハニカム準拠） */
+  .large-clickable {
+    min-height: 56px; /* スマホ用により大きく */
+    min-width: 56px;
+  }
+
+  /* スマホ用フォーカス表示改善 */
+  *:focus-visible {
+    outline: 4px solid currentColor; /* より太いアウトライン */
+    outline-offset: 4px;
+  }
+
+  /* スマホでの文字サイズ調整（読みやすさ重視） */
+  body {
+    font-size: 18px; /* スマホでは18pxベース */
+  }
+
+  h1 {
+    font-size: 2rem; /* 32px */
+  }
+
+  h2 {
+    font-size: 1.75rem; /* 28px */
+  }
+
+  h3 {
+    font-size: 1.5rem; /* 24px */
+  }
+
+  /* カードのスマホ最適化 */
+  .card {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  /* タブのスマホ最適化 */
+  .tab-trigger {
+    min-height: 56px; /* より大きなタッチターゲット */
+    font-size: 1rem;
+    padding: 16px 20px;
+  }
+}
+
+/* 縦画面スマホ専用スタイル */
+@media (max-width: 480px) and (orientation: portrait) {
+  /* ロゴサイズをさらに調整 */
+  .kumotsudai-logo-mobile {
+    transform: scale(0.8);
+  }
+
+  /* より大きなタッチターゲット */
+  .large-clickable {
+    min-height: 60px;
+    min-width: 60px;
+  }
+
+  /* 文字サイズをさらに拡大 */
+  body {
+    font-size: 20px;
+  }
+}
+
+/* 横画面スマホ・タブレット対応 */
+@media (max-width: 1024px) and (orientation: landscape) {
+  /* ロゴの横画面最適化 */
+  .kumotsudai-logo-landscape {
+    transform: scale(0.85);
+    margin: 0.25rem 0;
+  }
+}
+
+/* 高解像度デバイス対応（Retina等） */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* より鮮明な境界線とシャドウ */
+  .premium-shadow {
+    box-shadow:
+      0 0.5px 1.5px rgba(0, 0, 0, 0.12),
+      0 2px 3px rgba(0, 0, 0, 0.08),
+      0 5px 7.5px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* UXハニカム - スマホでのアニメーション最適化 */
+@media (max-width: 768px) {
+  /* アニメーション速度調整 */
+  .ultra-fast-transition {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* パーティクル効果をスマホでは控えめに */
+  .floating-particles::before {
+    opacity: 0.3; /* 控えめな効果 */
+  }
+
+  /* アニメーション強度を調整 */
+  .mystical-glow::after {
+    opacity: 0.6; /* より控えめ */
+  }
+}
+
+/* パフォーマンス重視のスマホ設定 */
+@media (max-width: 768px) {
+  /* GPUアクセラレーション最適化 */
+  .performance-optimized {
+    transform: translateZ(0) scale(1);
+    will-change: transform;
+  }
+
+  /* 複雑なアニメーションを簡略化 */
+  @keyframes autumnFloatMobile {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+  }
+
+  @keyframes winterFloatMobile {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+  }
+
+  .autumn-theme .floating-particles::before {
+    animation: autumnFloatMobile 10s ease-in-out infinite;
+  }
+
+  .winter-theme .floating-particles::before {
+    animation: winterFloatMobile 12s ease-in-out infinite;
+  }
+}
+
+/* リデュースモーション対応 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ダークモードでの最適化 */
+@media (prefers-color-scheme: dark) {
+  .premium-shadow {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 4px 6px rgba(0, 0, 0, 0.2),
+      0 10px 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* プリント最適化 */
+@media print {
+  .no-print,
+  .interactive-element,
+  .mystical-glow,
+  .haptic-feedback {
+    display: none !important;
+  }
+
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+}
+
+/* 高コントラストモード対応 */
+@media (prefers-contrast: high) {
+  .premium-shadow {
+    box-shadow: 0 0 0 2px currentColor;
+  }
+
+  .mystical-glow::after {
+    display: none;
+  }
+}
+
+/* テスト環境用スタイル */
+@media (prefers-reduced-motion: reduce) {
+  .test-mode * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
