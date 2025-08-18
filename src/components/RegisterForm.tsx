@@ -25,7 +25,7 @@ interface RegisterFormProps {
 
 // バリデーションエラー表示クラス
 class ValidationErrorDisplay {
-  static show(field: string, message: string): JSX.Element {
+  static show(field: string, message: string): React.ReactNode {
     return (
       <p
         className="text-destructive text-sm flex items-center animate-shake"
