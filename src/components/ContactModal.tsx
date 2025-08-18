@@ -6,7 +6,7 @@ import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { X, Send, MessageSquare } from 'lucide-react';
+import { Send, MessageSquare } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface ContactModalProps {

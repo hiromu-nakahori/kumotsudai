@@ -23,9 +23,9 @@ interface RegisterFormProps {
 class ValidationErrorDisplay {
   static show(field: string, message: string): JSX.Element {
     return (
-      <p 
-        className="text-destructive text-sm flex items-center animate-shake" 
-        role="alert" 
+      <p
+        className="text-destructive text-sm flex items-center animate-shake"
+        role="alert"
         aria-live="polite"
         data-testid={`error-${field}`}
       >
@@ -57,19 +57,19 @@ class FormValidator {
       return `結界文は${VALIDATION_RULES.PASSWORD_MIN_LENGTH}文字以上で設定してください`;
     }
     if (password.length > 100) return '結界文は100文字以内で設定してください';
-    
+
     // パスワード強度チェック
     const hasUpperCase = /[A-Z]/.test(password);
     const hasLowerCase = /[a-z]/.test(password);
     const hasNumbers = /\d/.test(password);
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    
+
     const strengthCount = [hasUpperCase, hasLowerCase, hasNumbers, hasSpecialChar].filter(Boolean).length;
-    
+
     if (strengthCount < 2) {
       return '結界文は大文字・小文字・数字・記号のうち2種類以上を含んでください';
     }
-    
+
     return null;
   }
 
@@ -89,22 +89,22 @@ class FormValidator {
 
   static validateForm(data: RegisterFormData): { [key: string]: string } {
     const errors: { [key: string]: string } = {};
-    
+
     const nameError = this.validateName(data.name);
     if (nameError) errors.name = nameError;
-    
+
     const emailError = this.validateEmail(data.email);
     if (emailError) errors.email = emailError;
-    
+
     const passwordError = this.validatePassword(data.password);
     if (passwordError) errors.password = passwordError;
-    
+
     const departmentError = this.validateDepartment(data.department);
     if (departmentError) errors.department = departmentError;
-    
+
     const ageError = this.validateAge(data.age);
     if (ageError) errors.age = ageError;
-    
+
     return errors;
   }
 }
@@ -127,11 +127,10 @@ const SecureInput: React.FC<{
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className={`large-clickable transition-all duration-300 ${
-        error 
-          ? 'border-destructive ring-destructive/20 error-state' 
+      className={`large-clickable transition-all duration-300 ${error
+          ? 'border-destructive ring-destructive/20 error-state'
           : 'focus:ring-primary/20 focus:border-primary'
-      }`}
+        }`}
       autoComplete={autoComplete}
       data-testid={testId}
       aria-invalid={!!error}
@@ -151,12 +150,11 @@ const ThemedSelect: React.FC<{
 }> = ({ value, onValueChange, placeholder, options, error, 'data-testid': testId }) => {
   return (
     <Select value={value} onValueChange={onValueChange}>
-      <SelectTrigger 
-        className={`large-clickable transition-all duration-300 ${
-          error 
-            ? 'border-destructive ring-destructive/20 error-state' 
+      <SelectTrigger
+        className={`large-clickable transition-all duration-300 ${error
+            ? 'border-destructive ring-destructive/20 error-state'
             : 'focus:ring-primary/20 focus:border-primary'
-        }`}
+          }`}
         data-testid={testId}
         aria-invalid={!!error}
       >
@@ -164,8 +162,8 @@ const ThemedSelect: React.FC<{
       </SelectTrigger>
       <SelectContent className="theme-adaptive-select-content">
         {options.map(option => (
-          <SelectItem 
-            key={option.value} 
+          <SelectItem
+            key={option.value}
             value={option.value}
             className="theme-adaptive-select-item cursor-pointer hover:bg-accent focus:bg-accent"
           >
@@ -197,13 +195,13 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   const updateFormData = (field: keyof RegisterFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     setTouched(prev => ({ ...prev, [field]: true }));
-    
+
     // リアルタイムバリデーション
     if (touched[field]) {
       const fieldErrors = FormValidator.validateForm({ ...formData, [field]: value });
-      setErrors(prev => ({ 
-        ...prev, 
-        [field]: fieldErrors[field] || '' 
+      setErrors(prev => ({
+        ...prev,
+        [field]: fieldErrors[field] || ''
       }));
     }
 
@@ -217,14 +215,14 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   // パスワード強度計算
   const calculatePasswordStrength = (password: string): number => {
     if (!password) return 0;
-    
+
     let strength = 0;
     if (password.length >= 8) strength += 25;
     if (/[A-Z]/.test(password)) strength += 25;
     if (/[a-z]/.test(password)) strength += 25;
     if (/[0-9]/.test(password)) strength += 25;
     if (/[^A-Za-z0-9]/.test(password)) strength += 25;
-    
+
     return Math.min(strength, 100);
   };
 
@@ -239,7 +237,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   // フォーム送信
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // 全フィールドをtouchedに設定
     setTouched({
       name: true,
@@ -250,13 +248,13 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
     });
 
     const validationErrors = FormValidator.validateForm(formData);
-    
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       toast.error('入力エラーがあります', {
         description: '赤く表示されている項目を修正してください'
       });
-      
+
       // 最初のエラーフィールドにフォーカス
       const firstErrorField = Object.keys(validationErrors)[0];
       const element = document.getElementById(firstErrorField);
@@ -359,30 +357,29 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           autoComplete="new-password"
           data-testid="register-password"
         />
-        
+
         {/* パスワード強度表示 */}
         {formData.password && (
           <div className="space-y-1">
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">結界文の強度:</span>
-              <span className={`font-medium ${
-                passwordStrength < 50 ? 'text-destructive' : 
-                passwordStrength < 75 ? 'text-amber-600' : 'text-green-600'
-              }`}>
-                {passwordStrength < 25 ? '弱い' : 
-                 passwordStrength < 50 ? '普通' : 
-                 passwordStrength < 75 ? '強い' : '非常に強い'}
+              <span className={`font-medium ${passwordStrength < 50 ? 'text-destructive' :
+                  passwordStrength < 75 ? 'text-amber-600' : 'text-green-600'
+                }`}>
+                {passwordStrength < 25 ? '弱い' :
+                  passwordStrength < 50 ? '普通' :
+                    passwordStrength < 75 ? '強い' : '非常に強い'}
               </span>
             </div>
             <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-              <div 
+              <div
                 className={`h-full transition-all duration-300 ${getPasswordStrengthColor(passwordStrength)}`}
                 style={{ width: `${passwordStrength}%` }}
               />
             </div>
           </div>
         )}
-        
+
         {errors.password && (
           <div id="password-error">
             {ValidationErrorDisplay.show('password', errors.password)}
