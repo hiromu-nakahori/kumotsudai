@@ -9,6 +9,7 @@ export const AVAILABLE_GENRES = [
 
 // 所属選択肢
 export const DEPARTMENTS = [
+  { value: '', label: '選択してください' },
   { value: 'wind', label: '風の部署' },
   { value: 'water', label: '水の工房' },
   { value: 'earth', label: '土の組合' },
@@ -17,17 +18,18 @@ export const DEPARTMENTS = [
   { value: 'valley', label: '谷の工房' },
   { value: 'mountain', label: '山の連盟' },
   { value: 'forest', label: '森の同志' }
-] as const;
+] ;
 
 // 年代選択肢
 export const AGE_RANGES = [
+  { value: '', label: '選択してください' },
   { value: 'teens', label: '10代' },
   { value: '20s', label: '20代' },
   { value: '30s', label: '30代' },
   { value: '40s', label: '40代' },
   { value: '50s', label: '50代' },
   { value: '60s', label: '60代以上' }
-] as const;
+] ;
 
 // お問い合わせカテゴリ
 export const CONTACT_CATEGORIES = [

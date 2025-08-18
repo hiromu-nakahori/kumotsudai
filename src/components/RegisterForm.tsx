@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -6,12 +7,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { DEPARTMENTS, AGE_RANGES, VALIDATION_RULES } from './data/constants';
 import { toast } from 'sonner';
 
+type Department = "" |"wind" | "water" | "earth" | "fire" | "wood" | "valley" | "mountain" | "forest";
+type Age = "" | "teens" | "20s" | "30s" | "40s" | "50s" | "60s";
+
 interface RegisterFormData {
   name: string;
   email: string;
   password: string;
-  department: string;
-  age: string;
+  department: Department;
+  age: Age;
 }
 
 interface RegisterFormProps {
@@ -73,16 +77,20 @@ class FormValidator {
     return null;
   }
 
-  static validateDepartment(department: string): string | null {
+  static validateDepartment(
+    department: typeof DEPARTMENTS[number]['value']
+  ): string | null {
     if (!department) return '所属を選択してください';
-    const validDepartments = DEPARTMENTS.map(d => d.value);
+    const validDepartments: Array<typeof DEPARTMENTS[number]['value']> = DEPARTMENTS.map(d => d.value);
     if (!validDepartments.includes(department)) return '有効な所属を選択してください';
     return null;
   }
 
-  static validateAge(age: string): string | null {
+  static validateAge(
+    age: typeof AGE_RANGES[number]['value']
+  ): string | null {
     if (!age) return '年代を選択してください';
-    const validAges = AGE_RANGES.map(a => a.value);
+    const validAges: Array<typeof AGE_RANGES[number]['value']> = AGE_RANGES.map(a => a.value);
     if (!validAges.includes(age)) return '有効な年代を選択してください';
     return null;
   }
