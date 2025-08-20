@@ -14,6 +14,32 @@ const ToggleGroupContext = React.createContext<
   variant: "default",
 });
 
+/**
+ * ToggleGroupコンポーネント
+ *
+ * 複数のトグルボタンをグループ化し、排他的または複数選択可能なUIを提供します。  
+ * Radix UIのToggleGroupPrimitive.Rootをラップし、variant（バリアント）やsize（サイズ）などのスタイルをcontextで子要素に伝播します。
+ * ボタン群の外枠やシャドウ、ラウンド角などのスタイルが自動で付与されます。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops
+ * @param {React.ReactNode} props.children - トグルグループ内に表示するToggleGroupItem要素。
+ * @param {string} [props.className] - 追加のCSSクラス。デフォルトでflexレイアウトやrounded、shadowなどが付与されます。
+ * @param {"default"|"outline"|"ghost"|"destructive"} [props.variant] - トグルグループ全体のバリアント（スタイル種別）。
+ * @param {"default"|"sm"|"lg"} [props.size] - トグルグループ全体のサイズ。
+ * @returns {JSX.Element} トグルグループのラッパー要素
+ *
+ * @example
+ * <ToggleGroup variant="outline" size="sm">
+ *   <ToggleGroupItem value="bold">Bold</ToggleGroupItem>
+ *   <ToggleGroupItem value="italic">Italic</ToggleGroupItem>
+ * </ToggleGroup>
+ *
+ * @note
+ * - variant/sizeはcontext経由で子のToggleGroupItemに伝播します。
+ * - Radix UIのToggleGroupPrimitive.Rootのpropsもそのまま渡せます（type, value, onValueChangeなど）。
+ * - アクセシビリティ: キーボード操作やフォーカスリングに対応しています。
+ */
 function ToggleGroup({
   className,
   variant,
@@ -40,6 +66,29 @@ function ToggleGroup({
   );
 }
 
+/**
+ * ToggleGroupItemコンポーネント
+ *
+ * ToggleGroup内の個々のトグルボタンを表します。  
+ * Radix UIのToggleGroupPrimitive.Itemをラップし、variantやsizeのスタイルをcontextまたはpropsから適用します。
+ * グループ内で自動的に角丸やボーダー、シャドウなどのスタイルが調整されます。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops
+ * @param {React.ReactNode} props.children - トグルボタン内に表示する内容（ラベルやアイコンなど）。
+ * @param {string} [props.className] - 追加のCSSクラス。デフォルトでflex-1やrounded、focus時のz-indexなどが付与されます。
+ * @param {"default"|"outline"|"ghost"|"destructive"} [props.variant] - 個別のバリアント（グループのvariantが優先されます）。
+ * @param {"default"|"sm"|"lg"} [props.size] - 個別のサイズ（グループのsizeが優先されます）。
+ * @returns {JSX.Element} トグルボタン要素
+ *
+ * @example
+ * <ToggleGroupItem value="bold">Bold</ToggleGroupItem>
+ *
+ * @note
+ * - variant/sizeはグループのcontextが優先されます。
+ * - Radix UIのToggleGroupPrimitive.Itemのpropsもそのまま渡せます（value, disabledなど）。
+ * - アクセシビリティ: ボタンとして動作し、キーボード操作やフォーカスリングに対応しています。
+ */
 function ToggleGroupItem({
   className,
   children,

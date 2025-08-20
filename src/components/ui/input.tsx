@@ -2,6 +2,35 @@ import * as React from "react";
 
 import { cn } from "./utils";
 
+/**
+ * Input コンポーネント
+ *
+ * React の標準 <input> 要素をラップし、スタイリングやアクセシビリティ、拡張性を高めたカスタムコンポーネントです。
+ * Tailwind CSS を用いた一貫したデザイン、バリデーション・無効化・ファイル入力など多様な状態に対応しています。
+ * また、forwardRef により親から ref を渡して DOM の input 要素へ直接アクセスできます。
+ *
+ * @example
+ * <Input type="text" placeholder="名前を入力" aria-invalid={hasError} />
+ *
+ * @param {Object} props - <input> 要素が受け取る全てのプロパティ
+ * @param {string} [props.className] - 追加のクラス名
+ * @param {string} [props.type] - input の type 属性
+ * @param {React.Ref<HTMLInputElement>} ref - input 要素への参照
+ * @returns {JSX.Element} スタイリング済みの <input> 要素
+ *
+ * @see https://react.dev/reference/react/forwardRef
+ * @see https://tailwindcss.com/
+ *
+ * @remarks
+ * - `cn` 関数はクラス名を結合するユーティリティです。
+ * - `data-slot="input"` 属性はテストやスタイリングのためのカスタム属性です。
+ * - `aria-invalid` 属性が true の場合、エラー用のスタイルが適用されます。
+ * - `disabled` 属性が true の場合、無効化スタイルが適用されます。
+ * - `type="file"` の場合、ファイル入力用のスタイルが適用されます。
+ *
+ * @component
+ */
+
 const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
   ({ className, type, ...props }, ref) => {
     return (

@@ -2,6 +2,24 @@ import * as React from "react";
 
 import { cn } from "./utils";
 
+/**
+ * Cardコンポーネント
+ *
+ * カードUIのベースとなるコンテナ要素です。背景色、枠線、角丸、テキスト色などのスタイルが適用されます。
+ * 子要素としてヘッダー、コンテンツ、フッターなどを自由に配置できます。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops（div要素のpropsを継承）
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @returns {JSX.Element} カードのコンテナ要素
+ *
+ * @example
+ * <Card>
+ *   <CardHeader />
+ *   <CardContent />
+ *   <CardFooter />
+ * </Card>
+ */
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -15,6 +33,24 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * CardHeaderコンポーネント
+ *
+ * カードのヘッダー領域を表します。タイトルや説明、アクションボタンなどを配置できます。
+ * グリッドレイアウトでタイトル・説明・アクションを整列します。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops（div要素のpropsを継承）
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @returns {JSX.Element} カードのヘッダー要素
+ *
+ * @example
+ * <CardHeader>
+ *   <CardTitle>タイトル</CardTitle>
+ *   <CardDescription>説明文</CardDescription>
+ *   <CardAction>...</CardAction>
+ * </CardHeader>
+ */
 function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -28,6 +64,19 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * CardTitleコンポーネント
+ *
+ * カードのタイトルを表示します。h4要素としてレンダリングされ、見出しとして利用できます。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops（div要素のpropsを継承）
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @returns {JSX.Element} カードタイトル要素
+ *
+ * @example
+ * <CardTitle>カードのタイトル</CardTitle>
+ */
 function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <h4
@@ -38,6 +87,19 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * CardDescriptionコンポーネント
+ *
+ * カードの説明文やサブタイトルを表示します。テキスト色が控えめ（muted）になります。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops（div要素のpropsを継承）
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @returns {JSX.Element} カード説明要素
+ *
+ * @example
+ * <CardDescription>このカードの説明文です。</CardDescription>
+ */
 function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <p
@@ -48,6 +110,22 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * CardActionコンポーネント
+ *
+ * カードヘッダー内のアクション領域（例: ボタン、アイコンなど）を表示します。
+ * グリッドの右上に配置されます。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops（div要素のpropsを継承）
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @returns {JSX.Element} カードアクション要素
+ *
+ * @example
+ * <CardAction>
+ *   <Button>編集</Button>
+ * </CardAction>
+ */
 function CardAction({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -61,6 +139,22 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * CardContentコンポーネント
+ *
+ * カードの主な内容領域を表します。テキストや画像、フォームなどを配置できます。
+ * パディングが適用され、最後の子要素の場合は下部パディングも追加されます。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops（div要素のpropsを継承）
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @returns {JSX.Element} カードコンテンツ要素
+ *
+ * @example
+ * <CardContent>
+ *   <p>詳細情報</p>
+ * </CardContent>
+ */
 function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -71,6 +165,22 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * CardFooterコンポーネント
+ *
+ * カードのフッター領域を表します。アクションボタンや補足情報などを配置できます。
+ * 下部パディングと、境界線がある場合は上部パディングも追加されます。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops（div要素のpropsを継承）
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @returns {JSX.Element} カードフッター要素
+ *
+ * @example
+ * <CardFooter>
+ *   <Button>保存</Button>
+ * </CardFooter>
+ */
 function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

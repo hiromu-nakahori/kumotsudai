@@ -7,6 +7,34 @@ import { DayPicker } from "react-day-picker";
 import { cn } from "./utils";
 import { buttonVariants } from "./button";
 
+/**
+ * Calendarコンポーネント
+ *
+ * 日付選択用のカレンダーUIを表示するコンポーネントです。  
+ * `react-day-picker`のDayPickerをラップし、デザインやアクセシビリティを強化しています。
+ * 月移動のナビゲーション（前後ボタン）、範囲選択、今日・選択済み・無効日などの状態に応じたスタイルを適用します。
+ * クラス名や表示オプションをカスタマイズ可能です。
+ *
+ * @component
+ * @param {Object} props - DayPickerに渡すprops（`React.ComponentProps<typeof DayPicker>`を継承）
+ * @param {string} [props.className] - カレンダー全体に追加するCSSクラス
+ * @param {Object} [props.classNames] - 各部位（months, day, cellなど）に追加するCSSクラス
+ * @param {boolean} [props.showOutsideDays=true] - 月外の日付も表示するかどうか
+ * @returns {JSX.Element} カレンダーUI
+ *
+ * @example
+ * <Calendar
+ *   selected={selectedDate}
+ *   onSelect={setSelectedDate}
+ *   mode="single"
+ * />
+ *
+ * @note
+ * - ナビゲーションアイコン（ChevronLeft/ChevronRight）はカスタムSVGで表示されます。
+ * - 範囲選択（mode="range"）時は開始・終了・中間日でスタイルが変化します。
+ * - クラス名はTailwind CSSベースで柔軟にカスタマイズ可能です。
+ * - アクセシビリティ: キーボード操作やフォーカスリングに対応しています。
+ */
 function Calendar({
   className,
   classNames,

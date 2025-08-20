@@ -5,6 +5,26 @@ import * as ProgressPrimitive from "@radix-ui/react-progress";
 
 import { cn } from "./utils";
 
+/**
+ * Progressコンポーネント
+ *
+ * プログレスバー（進捗バー）を表示するためのコンポーネントです。Radix UIのProgressPrimitive.RootとProgressPrimitive.Indicatorをラップしています。
+ * 進捗値（value）に応じてバーの長さが変化し、アニメーション付きで表示されます。デフォルトで丸み・色・高さなどのスタイルが付与されています。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops（Radix UIのProgressPrimitive.Rootのpropsを継承）
+ * @param {number} [props.value] - 進捗バーの値（0〜100）。未指定の場合は0として扱われます。
+ * @param {string} [props.className] - 追加のCSSクラス。デフォルトのスタイルに加えてカスタマイズ可能です。
+ * @returns {JSX.Element} プログレスバー要素
+ *
+ * @example
+ * <Progress value={60} />
+ *
+ * @note
+ * - アクセシビリティ: Radix UIのProgressPrimitiveを利用しているため、スクリーンリーダー対応などアクセシビリティに配慮されています。
+ * - valueが未指定の場合は0%として表示されます。
+ * - スタイルはTailwind CSSのユーティリティクラスで定義されています。必要に応じてclassNameで拡張可能です。
+ */
 function Progress({
   className,
   value,

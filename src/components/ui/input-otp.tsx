@@ -6,6 +6,25 @@ import { MinusIcon } from "lucide-react";
 
 import { cn } from "./utils";
 
+/**
+ * InputOTPコンポーネント
+ *
+ * OTP（ワンタイムパスワード）入力用のUIコンポーネントです。`input-otp`ライブラリのOTPInputをラップし、スタイルやクラス名の拡張を行います。
+ * 入力フィールドのグループ化やカスタムクラスの追加が可能です。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops
+ * @param {string} [props.className] - OTP入力フィールドに追加するCSSクラス
+ * @param {string} [props.containerClassName] - OTP入力フィールドのコンテナに追加するCSSクラス
+ * @returns {JSX.Element} OTP入力フィールド
+ *
+ * @example
+ * <InputOTP value={otp} onChange={setOtp} />
+ *
+ * @note
+ * - `input-otp`のOTPInputを拡張しています。
+ * - 無効化時はスタイルが変更されます。
+ */
 function InputOTP({
   className,
   containerClassName,
@@ -26,6 +45,22 @@ function InputOTP({
   );
 }
 
+/**
+ * InputOTPGroupコンポーネント
+ *
+ * OTP入力フィールドのグループを表すラッパーコンポーネントです。複数のスロット（桁）を横並びで表示します。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops
+ * @param {string} [props.className] - グループのラッパーに追加するCSSクラス
+ * @returns {JSX.Element} OTP入力フィールドのグループ
+ *
+ * @example
+ * <InputOTPGroup>
+ *   <InputOTPSlot index={0} />
+ *   <InputOTPSlot index={1} />
+ * </InputOTPGroup>
+ */
 function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -36,6 +71,25 @@ function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * InputOTPSlotコンポーネント
+ *
+ * OTP入力の各桁（スロット）を表すコンポーネントです。入力された文字やキャレット（点滅カーソル）を表示します。
+ * アクティブ状態やバリデーション状態に応じてスタイルが変化します。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops
+ * @param {number} props.index - スロットのインデックス（何桁目かを指定）
+ * @param {string} [props.className] - スロットに追加するCSSクラス
+ * @returns {JSX.Element} OTP入力の1桁分のスロット
+ *
+ * @example
+ * <InputOTPSlot index={0} />
+ *
+ * @note
+ * - アクティブ時やバリデーションエラー時に枠線や背景色が変化します。
+ * - キャレット（点滅する縦線）はhasFakeCaretがtrueの時に表示されます。
+ */
 function InputOTPSlot({
   index,
   className,
@@ -66,6 +120,22 @@ function InputOTPSlot({
   );
 }
 
+/**
+ * InputOTPSeparatorコンポーネント
+ *
+ * OTP入力フィールドの区切り（セパレーター）を表すコンポーネントです。デフォルトでMinusIcon（横線アイコン）を表示します。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops
+ * @returns {JSX.Element} 区切り線（セパレーター）
+ *
+ * @example
+ * <InputOTPSeparator />
+ *
+ * @note
+ * - role="separator"が付与され、アクセシビリティに配慮されています。
+ * - アイコンはMinusIconでカスタマイズ可能です。
+ */
 function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
   return (
     <div data-slot="input-otp-separator" role="separator" {...props}>

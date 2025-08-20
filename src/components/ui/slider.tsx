@@ -5,6 +5,33 @@ import * as SliderPrimitive from "@radix-ui/react-slider";
 
 import { cn } from "./utils";
 
+/**
+ * Sliderコンポーネント
+ *
+ * Radix UIのSliderPrimitiveをラップしたスライダーUIコンポーネントです。数値の範囲選択や値の調整に使用します。
+ * 単一値または複数値（レンジスライダー）に対応し、カスタムスタイルやアクセシビリティも考慮されています。
+ * 水平方向・垂直方向の両方に対応し、ドラッグやキーボード操作で値を変更できます。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops（Radix UI SliderPrimitive.Rootのpropsを継承）
+ * @param {string} [props.className] - 追加のCSSクラス。デフォルトでスライダーの外観・状態（無効化、縦横方向）に応じたスタイルが付与されます。
+ * @param {number|number[]} [props.defaultValue] - 初期値。単一値または配列（レンジ）で指定可能。
+ * @param {number|number[]} [props.value] - 現在の値。単一値または配列（レンジ）で指定可能。制御コンポーネントとして使用する場合に指定。
+ * @param {number} [props.min=0] - 最小値。デフォルトは0。
+ * @param {number} [props.max=100] - 最大値。デフォルトは100。
+ * @param {...any} [props.props] - その他Radix UI SliderPrimitive.Rootが受け付けるprops（onValueChange, step, orientationなど）。
+ * @returns {JSX.Element} スライダーUI要素
+ *
+ * @example
+ * <Slider defaultValue={50} min={0} max={100} />
+ * <Slider value={[20, 80]} min={0} max={100} onValueChange={setValue} />
+ *
+ * @note
+ * - value/defaultValueが配列の場合はレンジスライダーとして動作し、複数のThumb（つまみ）が表示されます。
+ * - アクセシビリティ: キーボード操作、フォーカスリング、無効化状態に対応しています。
+ * - スタイルはTailwind CSSのユーティリティクラスでカスタマイズされています。
+ * - Radix UIのSliderPrimitive.Track, SliderPrimitive.Range, SliderPrimitive.Thumbを内部で使用しています。
+ */
 function Slider({
   className,
   defaultValue,

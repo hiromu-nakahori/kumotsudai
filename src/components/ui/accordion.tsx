@@ -6,12 +6,61 @@ import { ChevronDownIcon } from "lucide-react";
 
 import { cn } from "./utils";
 
+/**
+ * Accordionコンポーネント
+ *
+ * Radix UIのAccordionPrimitive.Rootをラップした、アコーディオンUIのルートコンポーネントです。
+ * 複数のAccordionItemを内包し、開閉状態の管理や挙動を制御します。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops
+ * @param {'single' | 'multiple'} [props.type] - アコーディオンの開閉方式。'single'は1つだけ開く、'multiple'は複数同時に開く。
+ * @param {boolean} [props.collapsible] - 'single'モード時、開いている項目を閉じることができるかどうか。
+ * @param {string[]} [props.value] - 現在開いている項目の値（制御コンポーネントとして使う場合）。
+ * @param {(value: string[]) => void} [props.onValueChange] - 開閉状態が変化したときのコールバック。
+ * @param {React.ReactNode} props.children - AccordionItemを含む子要素。
+ * @param {string} [props.className] - 追加のCSSクラス。
+ * @returns {JSX.Element} Accordionのルート要素
+ *
+ * @example
+ * <Accordion type="single" collapsible>
+ *   <AccordionItem value="item-1">
+ *     <AccordionTrigger>タイトル</AccordionTrigger>
+ *     <AccordionContent>内容</AccordionContent>
+ *   </AccordionItem>
+ * </Accordion>
+ *
+ * @see https://www.radix-ui.com/docs/primitives/components/accordion
+ */
 function Accordion({
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Root>) {
   return <AccordionPrimitive.Root data-slot="accordion" {...props} />;
 }
 
+/**
+ * AccordionItemコンポーネント
+ *
+ * アコーディオンの1項目を表します。Radix UIのAccordionPrimitive.Itemをラップしています。
+ * 各AccordionItemは、value属性で一意に識別されます。
+ * 内部にAccordionTriggerとAccordionContentを含めて使用します。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops
+ * @param {string} props.value - この項目の一意な値。Accordionのtype='single'やtype='multiple'で開閉状態を管理するために必須。
+ * @param {React.ReactNode} props.children - AccordionTriggerとAccordionContentを含む子要素。
+ * @param {string} [props.className] - 追加のCSSクラス。デフォルトで下線（border-b）が付き、最後の項目は下線が消えます。
+ * @returns {JSX.Element} Accordionの項目要素
+ *
+ * @example
+ * <AccordionItem value="item-1">
+ *   <AccordionTrigger>タイトル</AccordionTrigger>
+ *   <AccordionContent>内容</AccordionContent>
+ * </AccordionItem>
+ *
+ * @note
+ * value属性は必須です。重複しないようにしてください。
+ */
 function AccordionItem({
   className,
   ...props
@@ -25,6 +74,29 @@ function AccordionItem({
   );
 }
 
+/**
+ * AccordionTriggerコンポーネント
+ *
+ * アコーディオン項目の開閉トリガー（ボタン）を表します。Radix UIのAccordionPrimitive.Triggerをラップしています。
+ * 子要素としてタイトルやラベルを受け取り、右側にChevronDownIcon（下向き矢印）が表示されます。
+ * 開いている場合はアイコンが180度回転します。
+ * キーボード操作（Enter/Space）やTab移動、フォーカスリングなどアクセシビリティに配慮されています。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops
+ * @param {React.ReactNode} props.children - トリガー内に表示するタイトルやラベル。
+ * @param {string} [props.className] - 追加のCSSクラス。デフォルトでフォーカスリング、ホバー時の下線、無効化時のスタイルなどが付与されます。
+ * @param {boolean} [props.disabled] - トリガーを無効化する場合に指定。
+ * @returns {JSX.Element} Accordionのトリガー要素
+ *
+ * @example
+ * <AccordionTrigger>セクションタイトル</AccordionTrigger>
+ *
+ * @note
+ * - アクセシビリティ: ボタンとして動作し、キーボード操作やフォーカスリングに対応しています。
+ * - アイコンは開閉状態（data-state=open）で自動回転します。
+ * - 無効化（disabled）時は操作不可となり、スタイルも変更されます。
+ */
 function AccordionTrigger({
   className,
   children,
@@ -47,6 +119,29 @@ function AccordionTrigger({
   );
 }
 
+/**
+ * AccordionContentコンポーネント
+ *
+ * アコーディオン項目の内容部分を表します。Radix UIのAccordionPrimitive.Contentをラップしています。
+ * 開閉時にアニメーション（data-state属性によるCSSアニメーション）が付与されます。
+ * 子要素は内部でdivにラップされ、上下のパディングが設定されています。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops
+ * @param {React.ReactNode} props.children - アコーディオンの内容として表示する要素。
+ * @param {string} [props.className] - 追加のCSSクラス。内容部分のパディングやスタイルをカスタマイズ可能。
+ * @returns {JSX.Element} Accordionの内容要素
+ *
+ * @example
+ * <AccordionContent>
+ *   <p>詳細な説明やフォームなど、任意の要素を配置できます。</p>
+ * </AccordionContent>
+ *
+ * @note
+ * - 開閉アニメーションは[data-state=open]と[data-state=closed]で制御されます。
+ * - 内容が多い場合でもoverflow-hiddenではみ出しを防ぎます。
+ * - 内部のdivで上下パディング（pt-0 pb-4）が付与されます。
+ */
 function AccordionContent({
   className,
   children,

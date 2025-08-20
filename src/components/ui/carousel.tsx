@@ -9,11 +9,52 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "./utils";
 import { Button } from "./button";
 
+/**
+ * CarouselApi型
+ *
+ * Embla CarouselのAPI型を表します。useEmblaCarouselの戻り値の2番目（APIオブジェクト）です。
+ * スクロール制御やイベントリスナーの追加・削除など、Carouselの操作に利用します。
+ *
+ * @typedef {UseEmblaCarouselType[1]} CarouselApi
+ *
+ * @see https://www.embla-carousel.com/api/
+ */
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
+
+/**
+ * CarouselOptions型
+ *
+ * Embla Carouselのオプション型です。useEmblaCarouselの第1引数で渡す設定値（axis, loop, speedなど）を表します。
+ *
+ * @typedef {Parameters<typeof useEmblaCarousel>[0]} CarouselOptions
+ *
+ * @see https://www.embla-carousel.com/options/
+ */
 type CarouselOptions = UseCarouselParameters[0];
+
+/**
+ * CarouselPlugin型
+ *
+ * Embla Carouselのプラグイン型です。useEmblaCarouselの第2引数で渡すプラグイン配列を表します。
+ *
+ * @typedef {Parameters<typeof useEmblaCarousel>[1]} CarouselPlugin
+ *
+ * @see https://www.embla-carousel.com/plugins/
+ */
 type CarouselPlugin = UseCarouselParameters[1];
 
+/**
+ * CarouselProps型
+ *
+ * Carouselコンポーネントに渡すpropsの型です。オプション、プラグイン、向き、APIセット関数などを含みます。
+ *
+ * @typedef {Object} CarouselProps
+ * @property {CarouselOptions} [opts] - Embla Carouselのオプション
+ * @property {CarouselPlugin} [plugins] - Embla Carouselのプラグイン
+ * @property {"horizontal" | "vertical"} [orientation] - カルーセルの向き（デフォルト: horizontal）
+ * @property {(api: CarouselApi) => void} [setApi] - Embla CarouselのAPIを取得するためのコールバック
+ */
 type CarouselProps = {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
@@ -21,6 +62,23 @@ type CarouselProps = {
   setApi?: (api: CarouselApi) => void;
 };
 
+/**
+ * CarouselContextProps型
+ *
+ * CarouselContextで管理する値の型です。Carouselの参照、API、スクロール制御関数、スクロール可否、各種propsを含みます。
+ *
+ * @typedef {Object} CarouselContextProps
+ * @property {React.RefObject<HTMLDivElement>} carouselRef - Embla Carouselの参照
+ * @property {CarouselApi} api - Embla CarouselのAPI
+ * @property {() => void} scrollPrev - 前のスライドへスクロールする関数
+ * @property {() => void} scrollNext - 次のスライドへスクロールする関数
+ * @property {boolean} canScrollPrev - 前へスクロール可能かどうか
+ * @property {boolean} canScrollNext - 次へスクロール可能かどうか
+ * @property {CarouselOptions} [opts] - Embla Carouselのオプション
+ * @property {CarouselPlugin} [plugins] - Embla Carouselのプラグイン
+ * @property {"horizontal" | "vertical"} [orientation] - カルーセルの向き
+ * @property {(api: CarouselApi) => void} [setApi] - Embla CarouselのAPIを取得するためのコールバック
+ */
 type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0];
   api: ReturnType<typeof useEmblaCarousel>[1];
@@ -30,8 +88,30 @@ type CarouselContextProps = {
   canScrollNext: boolean;
 } & CarouselProps;
 
+/**
+ * CarouselContext
+ *
+ * Carouselの状態や操作関数を提供するReactコンテキストです。Carousel内部の各コンポーネントでuseCarousel()を通じて利用します。
+ *
+ * @type {React.Context<CarouselContextProps | null>}
+ *
+ * @see useCarousel
+ */
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
 
+/**
+ * useCarouselフック
+ *
+ * CarouselContextからCarouselの状態や操作関数を取得するカスタムフックです。Carousel内部の子コンポーネントで利用します。
+ * Carouselコンポーネントの子孫でのみ使用可能です。
+ *
+ * @returns {CarouselContextProps} Carouselの状態・操作関数
+ * @throws {Error} CarouselContextが存在しない場合（Carousel外で使用した場合）にエラーを投げます
+ *
+ * @example
+ * const { scrollNext } = useCarousel();
+ * scrollNext();
+ */
 function useCarousel() {
   const context = React.useContext(CarouselContext);
 
@@ -42,6 +122,38 @@ function useCarousel() {
   return context;
 }
 
+/**
+ * Carouselコンポーネント
+ *
+ * Embla Carouselをラップしたカルーセルのルートコンポーネントです。状態管理やキーボード操作、コンテキストの提供を行います。
+ * orientation, opts, plugins, setApiなどのpropsで動作をカスタマイズできます。
+ * 子要素としてCarouselContent, CarouselItem, CarouselPrevious, CarouselNextなどを配置します。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops（divのprops + CarouselProps）
+ * @param {"horizontal" | "vertical"} [props.orientation] - カルーセルの向き（デフォルト: horizontal）
+ * @param {CarouselOptions} [props.opts] - Embla Carouselのオプション
+ * @param {CarouselPlugin} [props.plugins] - Embla Carouselのプラグイン
+ * @param {(api: CarouselApi) => void} [props.setApi] - Embla CarouselのAPIを取得するためのコールバック
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @param {React.ReactNode} props.children - カルーセルの子要素
+ * @returns {JSX.Element} カルーセルのルート要素
+ *
+ * @example
+ * <Carousel>
+ *   <CarouselContent>
+ *     <CarouselItem>1</CarouselItem>
+ *     <CarouselItem>2</CarouselItem>
+ *   </CarouselContent>
+ *   <CarouselPrevious />
+ *   <CarouselNext />
+ * </Carousel>
+ *
+ * @note
+ * - キーボード操作（左右キー）に対応
+ * - Embla CarouselのAPIをコンテキストで管理
+ * - orientationで縦横切り替え可能
+ */
 function Carousel({
   orientation = "horizontal",
   opts,
@@ -132,6 +244,24 @@ function Carousel({
   );
 }
 
+/**
+ * CarouselContentコンポーネント
+ *
+ * カルーセルのスライドコンテンツをラップするコンポーネントです。carouselRefをrefとして渡し、overflow-hiddenでスライド領域を制御します。
+ * 子要素としてCarouselItemを並べて使用します。
+ *
+ * @component
+ * @param {Object} props - divのprops
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @param {React.ReactNode} props.children - スライドアイテム
+ * @returns {JSX.Element} カルーセルのコンテンツ領域
+ *
+ * @example
+ * <CarouselContent>
+ *   <CarouselItem>1</CarouselItem>
+ *   <CarouselItem>2</CarouselItem>
+ * </CarouselContent>
+ */
 function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   const { carouselRef, orientation } = useCarousel();
 
@@ -153,6 +283,20 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * CarouselItemコンポーネント
+ *
+ * カルーセル内の各スライドを表すコンポーネントです。flexレイアウトで横並び（または縦並び）になり、アクセシビリティ属性も付与されます。
+ *
+ * @component
+ * @param {Object} props - divのprops
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @param {React.ReactNode} props.children - スライドの内容
+ * @returns {JSX.Element} カルーセルのスライド要素
+ *
+ * @example
+ * <CarouselItem>画像やテキスト</CarouselItem>
+ */
 function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
   const { orientation } = useCarousel();
 
@@ -171,6 +315,26 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * CarouselPreviousコンポーネント
+ *
+ * カルーセルの「前へ」ボタンを表すコンポーネントです。Embla CarouselのAPIを使って前のスライドへ移動します。
+ * orientationに応じてボタン位置や回転が変わります。disabled状態も自動制御されます。
+ *
+ * @component
+ * @param {Object} props - Buttonコンポーネントのprops
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @param {string} [props.variant] - ボタンのバリアント（デフォルト: outline）
+ * @param {string} [props.size] - ボタンサイズ（デフォルト: icon）
+ * @returns {JSX.Element} 前へ移動するボタン
+ *
+ * @example
+ * <CarouselPrevious />
+ *
+ * @note
+ * - disabled状態はcanScrollPrevで自動制御
+ * - orientationで縦横の位置・回転が変化
+ */
 function CarouselPrevious({
   className,
   variant = "outline",
@@ -201,6 +365,26 @@ function CarouselPrevious({
   );
 }
 
+/**
+ * CarouselNextコンポーネント
+ *
+ * カルーセルの「次へ」ボタンを表すコンポーネントです。Embla CarouselのAPIを使って次のスライドへ移動します。
+ * orientationに応じてボタン位置や回転が変わります。disabled状態も自動制御されます。
+ *
+ * @component
+ * @param {Object} props - Buttonコンポーネントのprops
+ * @param {string} [props.className] - 追加のCSSクラス
+ * @param {string} [props.variant] - ボタンのバリアント（デフォルト: outline）
+ * @param {string} [props.size] - ボタンサイズ（デフォルト: icon）
+ * @returns {JSX.Element} 次へ移動するボタン
+ *
+ * @example
+ * <CarouselNext />
+ *
+ * @note
+ * - disabled状態はcanScrollNextで自動制御
+ * - orientationで縦横の位置・回転が変化
+ */
 function CarouselNext({
   className,
   variant = "outline",

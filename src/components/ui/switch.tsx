@@ -5,6 +5,29 @@ import * as SwitchPrimitive from "@radix-ui/react-switch";
 
 import { cn } from "./utils";
 
+/**
+ * Switchコンポーネント
+ *
+ * トグルスイッチ（ON/OFF切り替え）を表すUIコンポーネントです。Radix UIのSwitchPrimitive.Rootをラップしています。
+ * 状態（ON/OFF）に応じて背景色やThumb（つまみ）の位置・色が変化します。アクセシビリティ対応済みで、キーボード操作やフォーカスリングもサポートします。
+ * ダークモードや無効化状態にも対応しています。
+ *
+ * @component
+ * @param {Object} props - コンポーネントに渡すprops（SwitchPrimitive.Rootのpropsを継承）
+ * @param {string} [props.className] - 追加のCSSクラス。デフォルトでサイズ・色・フォーカスリング・無効化時のスタイルなどが付与されます。
+ * @param {boolean} [props.disabled] - スイッチを無効化する場合に指定。操作不可となり、スタイルも変更されます。
+ * @param {boolean} [props.checked] - スイッチのON/OFF状態を制御する場合に指定。
+ * @param {Function} [props.onCheckedChange] - スイッチの状態が変化した際に呼ばれるコールバック。
+ * @returns {JSX.Element} トグルスイッチ要素
+ *
+ * @example
+ * <Switch checked={isEnabled} onCheckedChange={setIsEnabled} />
+ *
+ * @note
+ * - アクセシビリティ: キーボード操作（Space/Enter）やフォーカスリングに対応しています。
+ * - 状態（checked/unchecked）に応じてThumbの位置や色が自動で切り替わります。
+ * - ダークモードやdisabled状態にも対応しています。
+ */
 function Switch({
   className,
   ...props

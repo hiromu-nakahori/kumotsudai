@@ -1,9 +1,31 @@
+//コンポーネント作成のため
 import * as React from "react";
+//asChildプロパティで、ラップする要素を柔軟に変更できるようにするため。
 import { Slot } from "@radix-ui/react-slot";
+//クラス名のバリアント（バージョン管理）variantやsizeなどのスタイル切り替えを簡略化。
 import { cva, type VariantProps } from "class-variance-authority";
-
+//クラス名を結合するユーティリティ関数
 import { cn } from "./utils";
 
+/**
+ * ベースクラス：ボタンの基本的な見た目・挙動(flex配置、ラウンド、フォント、トランジション、disabled時の見た目など)
+ * バリアント：variant(色や背景などのテーマ)とsize(大きさ)を切り替え可能
+ * defaultVariants：デフォルト値(variant:"default", size:"default")
+ * 
+ * variantの種類
+ * - default: プライマリボタン
+ * - destructive: 破壊的操作用
+ * - outline: 枠線付き
+ * - secondary: セカンダリースタイル
+ * - ghost: 透過スタイル
+ * - link: リンク風ボタン
+ * 
+ * sizeの種類
+ * - default: 通常サイズ
+ * - sm: 小サイズ
+ * - lg: 大サイズ
+ * - icon: アイコンボタン(正方形)
+ */
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
@@ -34,6 +56,18 @@ const buttonVariants = cva(
   },
 );
 
+/**
+ * ボタンコンポーネント
+ * forwardRef：refを外部から渡せる（例：フォームライブラリやテストで便利）
+ * props：
+ * - className：追加のクラス名
+ * - variant：ボタンのスタイル variant
+ * - size：ボタンのサイズ
+ * - asChild：trueの場合、Slot（Radix UI）で任意要素をラップする
+ * Comp：asChildがtrueならSlot、falseならbuttonタグ
+ * className：buttonVariantsでvariant/sizeに応じたクラスを生成し、cnで結合。
+ * props：その他のprops（onClickなど）をすべて渡す。
+ */
 const Button = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<"button"> &
@@ -53,6 +87,9 @@ const Button = React.forwardRef<
   );
 });
 
+/**
+ * Button：コンポーネント本体
+ * buttonVariants：variantのクラス生成関数（他のコンポーネントでも使える）
+ */
 Button.displayName = "Button";
-
 export { Button, buttonVariants };
