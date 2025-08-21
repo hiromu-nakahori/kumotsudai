@@ -1,6 +1,6 @@
-@import url('./globals.css');
+@import "tailwindcss";
+
 @custom-variant dark (&:is(.dark *));
-@tailwind utilities;
 
 :root {
   --font-size: 16px; /* UXハニカム - アクセシビリティ向上のため14px→16pxに変更 */
