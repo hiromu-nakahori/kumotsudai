@@ -414,31 +414,6 @@ const config: Config = {
       });
     },
   ],
-  
-  // V4対応：デフォルト設定の上書き
-  corePlugins: {
-    preflight: true,
-  },
-  
-  // 本番ビルド最適化
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: [
-      './index.html',
-      './src/**/*.{js,ts,jsx,tsx}',
-      './components/**/*.{js,ts,jsx,tsx}',
-      './App.tsx'
-    ],
-    safelist: [
-      'autumn-theme',
-      'winter-theme',
-      'performance-optimized',
-      'ultra-fast-transition',
-      'theme-transition',
-      'large-clickable',
-      'haptic-feedback',
-    ],
-  },
 }
 
 export default config

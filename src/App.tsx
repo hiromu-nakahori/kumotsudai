@@ -20,6 +20,8 @@
  * @license MIT
  */
 
+import './styles/globals.css';
+
 import React, {
   useEffect,
   useState,
