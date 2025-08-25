@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
+import { Auth } from 'aws-amplify';
 
 // 供物（投稿）の型定義
 export interface Offering {
@@ -54,6 +55,9 @@ interface AppContextType {
   // 供物データ
   offerings: Offering[];
   
+  // Cognitoのユーザーデータ
+  cognitoUser: any | null;
+
   // ユーザーデータ
   users: User[];
   
@@ -64,7 +68,7 @@ interface AppContextType {
   sortOrder: 'asc' | 'desc';
   
   // アクション関数群
-  login: (email: string, password: string) => boolean;
+  login: (email: string, password: string) => Promise<boolean>;
   register: (userData: Omit<User, 'id' | 'joinedAt' | 'offeringCount' | 'totalLikes' | 'totalComments'> & { password: string }) => boolean;
   logout: () => void;
   setCurrentScreen: (screen: 'login' | 'register' | 'main' | 'profile' | 'help' | 'contact' | 'creators' | 'userProfile') => void;
@@ -373,17 +377,18 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [sortBy, setSortBy] = useState<'likes' | 'comments' | 'date'>('likes');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
-  // ログイン処理（簡易版）
-  const login = (email: string, password: string): boolean => {
-    // ダミーユーザーから該当するユーザーを検索
-    const user = users.find(u => u.email === email);
-    if (user && password) {
+  // ログイン処理
+  const login = async (email: string, password: string): Promise<boolean> => {
+    try {
+      const user = await Auth.signIn(email, password);
+      setCognitoUser(user);
       setCurrentUser(user);
       setIsAuthenticated(true);
       setCurrentScreen('main');
       return true;
+    } catch (error) {
+      return false;
     }
-    return false;
   };
 
   // 新規登録処理（簡易版）
@@ -567,6 +572,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     selectedUserId,
     theme,
     offerings,
+    cognitoUser,
     users,
     searchQuery,
     selectedGenres,

@@ -10,6 +10,7 @@
     "tailwind:build": "tailwindcss -i ./styles/globals.css -o ./dist/output.css --watch"
   },
   "dependencies": {
+    "@aws-amplify/auth": "^6.15.0",
     "@aws-amplify/ui-react": "^6.11.2",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-alert-dialog": "^1.1.6",
@@ -39,6 +40,7 @@
     "@radix-ui/react-tooltip": "^1.1.8",
     "@radix-ui/react-visually-hidden": "^1.2.3",
     "@tailwindcss/cli": "^4.0.0",
+    "aws-amplify": "^6.15.5",
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",
     "embla-carousel-react": "^8.6.0",

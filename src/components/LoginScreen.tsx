@@ -8,13 +8,14 @@ import { KumotsudaiLogo } from './KumotsudaiLogo';
 import { TreePine, Leaf, Snowflake } from 'lucide-react';
 
 // 降霊画面（ログイン）コンポーネント - 改良されたテーマ対応版
-export const LoginScreen: React.FC = () => {
+export const LoginScreen: React.FC = async () => {
   const { login, setCurrentScreen, theme, toggleTheme } = useApp();
   
   // フォームの状態管理
-  const [email, setEmail] = useState('mikoto@shrine.jp'); // デモ用初期値
-  const [password, setPassword] = useState('password123'); // デモ用初期値
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const success = await login(email, password);
 
   // ログイン処理
   const handleLogin = (e: React.FormEvent) => {
@@ -25,7 +26,6 @@ export const LoginScreen: React.FC = () => {
       return;
     }
 
-    const success = login(email, password);
     if (!success) {
       setError('降霊に失敗しました。呼び名と結界文をご確認ください。');
     }
