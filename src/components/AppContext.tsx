@@ -109,6 +109,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   // UI状態
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [cognitoUser, setCognitoUser] = useState<any | null>(null);
   const [currentScreen, setCurrentScreen] = useState<AppContextType['currentScreen']>('login');
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [theme, setTheme] = useState<'autumn' | 'winter'>('autumn');
@@ -120,9 +121,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<'likes' | 'comments' | 'date'>('likes');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
-  const [cognitoUser, setCognitoUser] = useState<any | null>(null);
 
-  // 降霊（ログイン）
+  // 降霊（ログインCognito認証）
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
       const user = await Auth.signIn(email, password);
@@ -137,10 +137,16 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   };
 
   // 魂紋の刻印（新規登録）
-  const register: AppContextType['register'] = async (userData) => {
+  // 新規登録（Cognito + DynamoDB）
+  const register = async (userData: Omit<User, 'id' | 'joinedAt' | 'offeringCount' | 'totalLikes' | 'totalComments'> & { password: string }): Promise<boolean> => {
     const { name, email, password, department, age, avatar } = userData;
     try {
-      await Auth.signUp({ username: email, password, attributes: { email } });
+      await Auth.signUp({
+        username: email,
+        password,
+        attributes: { email }
+      });
+
       const client = generateClient<Schema>();
       await client.models.User.create({
         name,
@@ -150,10 +156,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         avatar,
         joinedAt: new Date().toISOString(),
       });
+
       setCurrentScreen('login');
       return true;
     } catch (error) {
-      console.error('魂紋の刻印失敗:', error);
+      console.error('登録失敗:', error);
       return false;
     }
   };
